@@ -1,7 +1,11 @@
 # Fondos VIE 2027 · Prototipo funcional (SIGECI-VIE)
 
 Prototipo del sistema de gestión de la convocatoria de proyectos de investigación (ERS v1.3).
-No usa servidor ni base de datos: guarda todo en el navegador (localStorage).
+El flujo completo del ERS (18 casos de uso, 17 pasos de formulario, evaluación, Consejo, VIE y CIE) funciona en el
+navegador y guarda sus datos en `localStorage`. Además, incluye un servidor Node + Express con **MySQL** y cinco CRUD
+completos (ver la sección «Base de datos MySQL y CRUD» más abajo).
+
+**Tecnologías:** React 18, Vite, React Router, Node.js, Express y MySQL 8.
 
 ## Comandos
 
