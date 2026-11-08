@@ -1,0 +1,309 @@
+/* Ajustes finales de la retroalimentación (Manual de Identidad TEC) y reglas de impresión. Va al final para ganar la cascada. */
+/* ===== Retroalimentación profesor + Manual Identidad TEC (PANTONE 295C / 032C) ===== */
+:root {
+  --blue: #002f6c;
+  --blue-strong: #001f4d;
+  --blue-soft: rgba(0, 47, 108, 0.08);
+  --blue-mid: rgba(0, 47, 108, 0.18);
+  --tec-red: #ef3340;
+  --tec-red-soft: rgba(239, 51, 64, 0.1);
+  --success: #1b7a4e;
+  --success-soft: rgba(27, 122, 78, 0.12);
+  --warning: #b7791f;
+  --warning-soft: rgba(183, 121, 31, 0.14);
+  --info: #0b6e99;
+  --ink: #17212b;
+  --canvas: #f3f5f8;
+  font-family:
+    Arial,
+    Calibri,
+    Century Gothic,
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+  font-size: 16px;
+}
+body {
+  min-width: 1100px;
+  font-size: 1rem;
+}
+.app-shell {
+  grid-template-columns: 270px minmax(0, 1fr);
+}
+.sidebar {
+  padding: 26px 18px;
+}
+.sidebar .brand strong,
+.sidebar h1,
+.brand-title {
+  font-size: 1.15rem;
+}
+.nav-item,
+.sidebar a,
+.sidebar button {
+  font-size: 0.98rem;
+  padding: 12px 14px;
+}
+.topbar h1,
+.page-title,
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.25;
+}
+h2 {
+  font-size: 1.35rem;
+}
+h3 {
+  font-size: 1.15rem;
+}
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-55);
+  font-weight: 700;
+}
+p,
+.muted,
+small {
+  font-size: 1rem;
+}
+.card,
+.panel,
+ke {
+  padding: 1.25rem 1.35rem;
+}
+.btn,
+button.btn,
+.action-row button,
+button[class*="btn"] {
+  font-size: 1rem;
+  padding: 12px 18px;
+  min-height: 44px;
+  border-radius: 10px;
+}
+input,
+textarea,
+select {
+  font-size: 1rem;
+  padding: 12px 14px;
+  min-height: 44px;
+}
+label,
+.field label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+table,
+td,
+th {
+  font-size: 0.98rem;
+}
+.toast {
+  position: fixed !important;
+  left: 50% !important;
+  bottom: 28px !important;
+  top: auto !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999 !important;
+  background: var(--ink);
+  color: #fff;
+  padding: 14px 18px;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  max-width: min(560px, 92vw);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.toast.success {
+  background: var(--success);
+}
+.toast.error {
+  background: var(--tec-red);
+}
+.timeline {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  overflow: visible !important;
+  margin: 14px 0 18px;
+  padding: 14px 10px 12px;
+  background: var(--blue-soft);
+  border-radius: 12px;
+}
+.timeline-step {
+  position: relative;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 6px !important;
+  min-width: 0;
+  padding: 0 4px;
+  text-align: center;
+}
+.timeline-marker {
+  z-index: 3 !important;
+  position: relative;
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff !important;
+  border: 2px solid var(--blue-mid) !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink-55);
+  box-sizing: border-box;
+}
+.timeline-step.done .timeline-marker {
+  background: var(--success) !important;
+  border-color: var(--success) !important;
+  color: #fff !important;
+}
+.timeline-step.active .timeline-marker {
+  background: var(--blue) !important;
+  border-color: var(--blue) !important;
+  color: #fff !important;
+  box-shadow: 0 0 0 3px var(--blue-mid);
+}
+.timeline-copy {
+  z-index: 2;
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  padding-top: 0 !important;
+  background: transparent;
+}
+.timeline-copy strong,
+.timeline-step strong {
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.timeline-copy span,
+.timeline-step span {
+  display: block;
+  font-size: 0.7rem;
+  margin-top: 2px;
+  color: var(--ink-55);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.timeline-line {
+  position: absolute !important;
+  left: calc(50% + 16px) !important;
+  top: 13px !important;
+  width: calc(100% - 32px) !important;
+  height: 2px !important;
+  background: var(--ink-15) !important;
+  z-index: 1 !important;
+  pointer-events: none;
+}
+.timeline-step.done .timeline-line {
+  background: var(--blue) !important;
+}
+.action-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+  align-items: stretch;
+}
+.action-stack > * {
+  width: 100%;
+}
+.action-row {
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-observation,
+button.btn-observation {
+  background: var(--warning) !important;
+  color: #fff !important;
+  border-color: var(--warning) !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(183, 121, 31, 0.35);
+}
+.btn-observation:hover {
+  filter: brightness(1.05);
+}
+.justification-box {
+  background: var(--success-soft);
+  border-left: 4px solid var(--success);
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+.justification-box p {
+  margin: 6px 0 0;
+  white-space: pre-wrap;
+}
+button[class*="danger"],
+.btn-danger,
+.variant-danger {
+  background: var(--tec-red) !important;
+  border-color: var(--tec-red) !important;
+}
+.badge-success,
+.tone-primary {
+  background: var(--success-soft);
+  color: var(--success);
+}
+.case-file {
+  font-size: 1rem;
+}
+.case-file h3 {
+  font-size: 1.2rem;
+}
+.decision-score strong {
+  font-size: 1.8rem;
+  color: var(--blue);
+}
+.official-doc {
+  border: 1px solid var(--blue-mid);
+  background: #fff;
+  padding: 16px;
+  border-radius: 12px;
+}
+.rubric-summary h2 {
+  font-size: 1.4rem;
+}
+.score-ring strong {
+  font-size: 2rem;
+  color: var(--blue);
+}
+@media (max-width: 900px) {
+  body {
+    min-width: 0;
+  }
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: relative;
+    height: auto;
+  }
+}
+@media print {
+  .sidebar,
+  .topbar,
+  .action-row,
+  .action-stack,
+  .toast,
+  nav {
+    display: none !important;
+  }
+  .app-shell {
+    display: block;
+  }
+}

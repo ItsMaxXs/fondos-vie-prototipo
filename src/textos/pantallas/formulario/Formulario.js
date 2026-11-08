@@ -1,0 +1,61 @@
+// ============================================================
+// Textos · pantallas/formulario/Formulario.jsx
+// Aquí están los textos visibles de ese archivo. Cambie solo lo que está
+// entre comillas; no modifique los nombres a la izquierda de los dos puntos.
+// ============================================================
+export const textos = {
+  propuestaNoDisponible: "Propuesta no disponible",
+  noExisteONoPertenece: "No existe o no pertenece a su usuario.",
+  estadoDelArte: "Estado del arte",
+  metodologia: "Metodología",
+  hojaDeRutaDeLa: "Hoja de ruta de la línea de investigación",
+  hojaDeRuta: "Hoja de ruta",
+  describaLaFasePreviaLa:
+    "Describa la fase previa, la fase actual y la fase futura de la línea de investigación.",
+  referenciasBibliograficas: "Referencias bibliográficas",
+  referencias: "Referencias",
+  escribaUnaReferenciaPorLinea: "Escriba una referencia por línea. Mínimo",
+  actualmente: "; actualmente",
+  convocatoria: "Convocatoria",
+  nuevaPropuestaDeInvestigacion: "Nueva propuesta de investigación",
+  elFormularioEstaEnModo: "El formulario está en modo de lectura.",
+  completeLos17PasosEl:
+    "Complete los 17 pasos. El sistema valida las reglas de la convocatoria mientras escribe.",
+  guardarBorrador: "Guardar borrador",
+  recepcionAbiertaHastaEl: "Recepción abierta hasta el",
+  diasDespuesDeEsaFecha:
+    "días). Después de esa fecha no se admiten propuestas nuevas, ediciones ni documentos adicionales.",
+  elPeriodoDeRecepcionCerro: "El período de recepción cerró el",
+  elFormularioYaNoAdmite: "El formulario ya no admite cambios.",
+  ultimoGuardado: "· Último guardado",
+  hayCambiosSinGuardar: " (hay cambios sin guardar)",
+  observacionesPendientesDeAtender: "Observaciones pendientes de atender:",
+  informesPendientesAnteLaVie: "Informes pendientes ante la VIE:",
+  elEnvioEstaBloqueado: "El envío está bloqueado.",
+  seMuestraComoObservacionY: "Se muestra como observación y no bloquea el envío.",
+  progreso: "Progreso",
+  resumen: "Resumen",
+  completo: "Completo",
+  incompleto: "Incompleto",
+  pendiente: "Pendiente",
+  formularioVie2027Paso: "Formulario VIE 2027 · Paso",
+  fVie2027: "F-VIE-2027",
+  sinGuardar: "Sin guardar",
+  anterior: "Anterior",
+  guardar: "Guardar",
+  siguiente: "Siguiente",
+  enviarCorreccion: "Enviar corrección",
+  reenviarPropuesta: "Reenviar propuesta",
+  enviarPropuesta: "Enviar propuesta",
+  confirmarEnvio: "Confirmar envío",
+  alConfirmarLaPropuestaQueda:
+    "Al confirmar, la propuesta queda registrada y continúa a la etapa institucional que corresponda. Ya no podrá editarla salvo que sea devuelta.",
+  cancelar: "Cancelar",
+  confirmarYEnviar: "Confirmar y enviar",
+  proyecto: "Proyecto",
+  modalidad: "Modalidad",
+  totalSolicitado: "Total solicitado",
+  ruta: "Ruta",
+  centroDeVinculacionComiteTecnico: "Centro de Vinculación → Comité Técnico",
+  comiteTecnicoSinDictamenPi: "Comité Técnico (sin dictamen PI)",
+};

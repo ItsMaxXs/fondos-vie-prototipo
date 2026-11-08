@@ -1,0 +1,30 @@
+{
+  "name": "fondos-vie-prototipo",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Prototipo SIGECI-VIE: Fondos VIE 2027",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
+    "preview": "vite preview",
+    "servidor": "node servidor/server.js",
+    "seed": "node servidor/generar_seed.mjs"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "^7.1.0",
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "prettier": "^3.3.3",
+    "vite": "^6.0.0",
+    "vite-plugin-singlefile": "^2.0.3"
+  }
+}
