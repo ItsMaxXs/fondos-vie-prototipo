@@ -20,9 +20,9 @@ for (const [cat, vals] of Object.entries(CATALOGOS_BASE))
     if (typeof valor === "string") L.push(`INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES (${q(cat)},${q(valor)},${pts ?? "NULL"});`);
   }
 L.push(
-  "INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Mario Rojas','3-0321-0654','VIE-2024-018','Informe final del proyecto VIE-2024-018 sin entregar','Pendiente','Rodrigo Fallas','2026-06-10');",
-  "INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('David Mora','5-0222-0333','VIE-2023-007','Producto académico comprometido sin evidencia de sometimiento','Pendiente','Rodrigo Fallas','2026-05-02');",
-  "INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Ana Solano','6-0444-0555','VIE-2022-011','Informe final entregado fuera de plazo','Regularizado','Rodrigo Fallas','2026-03-15');",
+  "INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Mario Rojas','3-0321-0654','VIE-2024-018','Informe final del proyecto VIE-2024-018 sin entregar','Pendiente','Claudia Castro Gomez','2026-06-10');",
+  "INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('David Mora','5-0222-0333','VIE-2023-007','Producto académico comprometido sin evidencia de sometimiento','Pendiente','Claudia Castro Gomez','2026-05-02');",
+  "INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Ana Solano','6-0444-0555','VIE-2022-011','Informe final entregado fuera de plazo','Regularizado','Claudia Castro Gomez','2026-03-15');",
 );
 writeFileSync(new URL("./seed.sql", import.meta.url), L.join("\n") + "\n");
 console.log("seed.sql generado:", L.length - 2, "sentencias");

@@ -19,7 +19,7 @@ const mkUser = (id, nombre, email, roles, extra = {}) => ({
 });
 
 export const USUARIOS_BASE = [
-  mkUser("u_admin", "Steadman Murillo", "smurillo@tec.ac.cr", ["admin"], { instancia: "" }),
+  mkUser("u_admin", "Luis Ledezma Duarte", "lledezma@tec.ac.cr", ["admin"], { instancia: "" }),
   mkUser("u_vie", "Laura Solano", "lsolano@tec.ac.cr", ["vie_publicacion"], { instancia: "" }),
   mkUser("u_inv1", "María Rodríguez", "mrodriguez@tec.ac.cr", ["investigador"], {
     cedula: "1-1234-5678",
@@ -64,13 +64,13 @@ export const USUARIOS_BASE = [
   mkUser("u_gest", "Ana Quesada", "aquesada@tec.ac.cr", [{ rol: "gestora_vie", instancia: "" }], {
     instancia: "",
   }),
-  mkUser("u_cie", "Daniela Mora", "dmora@tec.ac.cr", [{ rol: "cie", instancia: "" }], {
+  mkUser("u_cie", "Mario Chacón Rivas", "machacon@tec.ac.cr", [{ rol: "cie", instancia: "" }], {
     instancia: "",
   }),
   mkUser(
     "u_di",
-    "Rodrigo Fallas",
-    "rfallas@tec.ac.cr",
+    "Claudia Castro Gomez",
+    "m.castro.1@tec.ac.cr",
     [{ rol: "direccion_investigacion", instancia: "" }],
     { instancia: "" },
   ),

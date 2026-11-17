@@ -6,7 +6,7 @@ INSERT INTO instancias VALUES ('EMEC','Escuela de Electromecánica','Escuela',40
 INSERT INTO instancias VALUES ('FOR','Escuela de Ingeniería Forestal','Escuela',40,10);
 INSERT INTO instancias VALUES ('CONS','Escuela de Construcción','Escuela',35,5);
 INSERT INTO instancias VALUES ('CIC','Centro de Investigaciones en Computación','Centro',0,30);
-INSERT INTO usuarios VALUES ('u_admin','Steadman Murillo','smurillo@tec.ac.cr',NULL,NULL,'Propiedad','admin','COMP','Activo');
+INSERT INTO usuarios VALUES ('u_admin','Luis Ledezma Duarte','lledezma@tec.ac.cr',NULL,NULL,'Propiedad','admin','COMP','Activo');
 INSERT INTO usuarios VALUES ('u_vie','Laura Solano','lsolano@tec.ac.cr',NULL,NULL,'Propiedad','vie_publicacion','COMP','Activo');
 INSERT INTO usuarios VALUES ('u_inv1','María Rodríguez','mrodriguez@tec.ac.cr','1-1234-5678','0000-0002-3141-7782','Propiedad','investigador','COMP','Activo');
 INSERT INTO usuarios VALUES ('u_inv2','Carlos Jiménez','cjimenez@tec.ac.cr','1-0987-6543','0000-0001-7788-2210','Propiedad','investigador','COMP','Activo');
@@ -24,8 +24,8 @@ INSERT INTO usuarios VALUES ('u_ev5','Jorge Brenes','jbrenes@tec.ac.cr',NULL,NUL
 INSERT INTO usuarios VALUES ('u_cons6','Marta Chaves','mchaves@tec.ac.cr',NULL,NULL,'Propiedad','consejo','COMP','Activo');
 INSERT INTO usuarios VALUES ('u_asco','Paola Mora','pmora@tec.ac.cr',NULL,NULL,'Propiedad','consejo_asistente','COMP','Activo');
 INSERT INTO usuarios VALUES ('u_gest','Ana Quesada','aquesada@tec.ac.cr',NULL,NULL,'Propiedad','gestora_vie','COMP','Activo');
-INSERT INTO usuarios VALUES ('u_cie','Daniela Mora','dmora@tec.ac.cr',NULL,NULL,'Propiedad','cie','COMP','Activo');
-INSERT INTO usuarios VALUES ('u_di','Rodrigo Fallas','rfallas@tec.ac.cr',NULL,NULL,'Propiedad','direccion_investigacion','COMP','Activo');
+INSERT INTO usuarios VALUES ('u_cie','Mario Chacón Rivas','machacon@tec.ac.cr',NULL,NULL,'Propiedad','cie','COMP','Activo');
+INSERT INTO usuarios VALUES ('u_di','Claudia Castro Gomez','m.castro.1@tec.ac.cr',NULL,NULL,'Propiedad','direccion_investigacion','COMP','Activo');
 INSERT INTO comites (instancia_id,nombre,coordinador_id,tamano) VALUES ('COMP','Comité Técnico de Computación','u_ev1',5);
 INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES ('productosFortalecimiento','Diagnóstico de situación',1);
 INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES ('productosFortalecimiento','Estudio de mercado',1);
@@ -91,6 +91,6 @@ INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES ('tiposDocumento','A
 INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES ('tiposDocumento','Acuerdo de instancia participante',NULL);
 INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES ('tiposDocumento','Dictamen de propiedad intelectual',NULL);
 INSERT IGNORE INTO catalogos (catalogo,valor,puntos) VALUES ('tiposDocumento','Aval ético o regulatorio',NULL);
-INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Mario Rojas','3-0321-0654','VIE-2024-018','Informe final del proyecto VIE-2024-018 sin entregar','Pendiente','Rodrigo Fallas','2026-06-10');
-INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('David Mora','5-0222-0333','VIE-2023-007','Producto académico comprometido sin evidencia de sometimiento','Pendiente','Rodrigo Fallas','2026-05-02');
-INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Ana Solano','6-0444-0555','VIE-2022-011','Informe final entregado fuera de plazo','Regularizado','Rodrigo Fallas','2026-03-15');
+INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Mario Rojas','3-0321-0654','VIE-2024-018','Informe final del proyecto VIE-2024-018 sin entregar','Pendiente','Claudia Castro Gomez','2026-06-10');
+INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('David Mora','5-0222-0333','VIE-2023-007','Producto académico comprometido sin evidencia de sometimiento','Pendiente','Claudia Castro Gomez','2026-05-02');
+INSERT INTO informes_pendientes (nombre,cedula,proyecto,detalle,estado,registrado_por,fecha) VALUES ('Ana Solano','6-0444-0555','VIE-2022-011','Informe final entregado fuera de plazo','Regularizado','Claudia Castro Gomez','2026-03-15');

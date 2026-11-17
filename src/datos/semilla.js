@@ -108,7 +108,7 @@ function dbBase() {
         detalle: "Informe final del proyecto VIE-2024-018 sin entregar",
         fecha: "2026-06-10T09:00:00",
         estado: "Pendiente",
-        porRegistro: "Rodrigo Fallas",
+        porRegistro: "Claudia Castro Gomez",
       },
       {
         id: "m_2",
@@ -118,7 +118,7 @@ function dbBase() {
         detalle: "Producto académico comprometido sin evidencia de sometimiento",
         fecha: "2026-05-02T09:00:00",
         estado: "Pendiente",
-        porRegistro: "Rodrigo Fallas",
+        porRegistro: "Claudia Castro Gomez",
       },
       {
         id: "m_3",
@@ -128,11 +128,11 @@ function dbBase() {
         detalle: "Informe final entregado fuera de plazo",
         fecha: "2026-03-15T09:00:00",
         estado: "Regularizado",
-        porRegistro: "Rodrigo Fallas",
+        porRegistro: "Claudia Castro Gomez",
         regularizado: {
           fecha: "2026-04-20T10:00:00",
           soporte: "Oficio DI-005-2026",
-          por: "Rodrigo Fallas",
+          por: "Claudia Castro Gomez",
         },
       },
     ],
