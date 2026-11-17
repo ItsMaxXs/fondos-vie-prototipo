@@ -8,78 +8,78 @@
 import { Router } from "express";
 
 // Traduce errores de MySQL a mensajes claros para la persona usuaria
-export function mensajeError(e) {
-  if (e.code === "ER_DUP_ENTRY") return [409, "Ya existe un registro con ese valor."];
-  if (e.code === "ER_ROW_IS_REFERENCED_2")
+export function mensajeError(error) {
+  if (error.code === "ER_DUP_ENTRY") return [409, "Ya existe un registro con ese valor."];
+  if (error.code === "ER_ROW_IS_REFERENCED_2")
     return [409, "No se puede eliminar: hay otros registros que dependen de este. Elimine o cambie primero esos registros."];
-  if (e.code === "ER_NO_REFERENCED_ROW_2") return [400, "El valor elegido en una lista no existe."];
-  if (e.code === "ER_CHECK_CONSTRAINT_VIOLATED") return [400, "Hay un valor fuera del rango permitido."];
+  if (error.code === "ER_NO_REFERENCED_ROW_2") return [400, "El valor elegido en una lista no existe."];
+  if (error.code === "ER_CHECK_CONSTRAINT_VIOLATED") return [400, "Hay un valor fuera del rango permitido."];
   return [500, "Error del servidor de base de datos."];
 }
 
 export function crearRouter(pool, entidades) {
   const router = Router();
-  for (const [ruta, e] of Object.entries(entidades)) {
-    const cols = e.columnas;
-    const sel = `SELECT * FROM ${e.tabla}`;
+  for (const [ruta, entidad] of Object.entries(entidades)) {
+    const columnasEditables = entidad.columnasEditables;
+    const consultaSeleccion = `SELECT * FROM ${entidad.tabla}`;
 
     // Valida los datos recibidos y devuelve un texto de error o null
-    const validar = (b, nuevo) => {
-      for (const c of e.obligatorias) if (b[c] === undefined || b[c] === null || String(b[c]).trim() === "") return `Falta el campo «${e.etiquetas?.[c] || c}».`;
-      return e.validar ? e.validar(b, nuevo) : null;
+    const validar = (datos, nuevo) => {
+      for (const campo of entidad.camposObligatorios) if (datos[campo] === undefined || datos[campo] === null || String(datos[campo]).trim() === "") return `Falta el campo «${entidad.etiquetas?.[campo] || campo}».`;
+      return entidad.validar ? entidad.validar(datos, nuevo) : null;
     };
-    const valores = (b) => cols.map((c) => (b[c] === "" || b[c] === undefined ? null : b[c]));
+    const valores = (datos) => columnasEditables.map((columna) => (datos[columna] === "" || datos[columna] === undefined ? null : datos[columna]));
 
-    router.get(`/${ruta}`, async (_req, res) => {
+    router.get(`/${ruta}`, async (_solicitud, respuesta) => {
       try {
-        const [rows] = await pool.query(`${sel} ORDER BY ${e.orden}`);
-        res.json(rows);
-      } catch (err) { const [s, m] = mensajeError(err); res.status(s).json({ error: m }); }
+        const [filas] = await pool.query(`${consultaSeleccion} ORDER BY ${entidad.ordenarPor}`);
+        respuesta.json(filas);
+      } catch (error) { const [codigoHttp, mensaje] = mensajeError(error); respuesta.status(codigoHttp).json({ error: mensaje }); }
     });
 
-    router.get(`/${ruta}/:id`, async (req, res) => {
+    router.get(`/${ruta}/:id`, async (solicitud, respuesta) => {
       try {
-        const [rows] = await pool.query(`${sel} WHERE ${e.pk} = ?`, [req.params.id]);
-        if (!rows.length) return res.status(404).json({ error: "Registro no encontrado." });
-        res.json(rows[0]);
-      } catch (err) { const [s, m] = mensajeError(err); res.status(s).json({ error: m }); }
+        const [filas] = await pool.query(`${consultaSeleccion} WHERE ${entidad.llavePrimaria} = ?`, [solicitud.params.id]);
+        if (!filas.length) return respuesta.status(404).json({ error: "Registro no encontrado." });
+        respuesta.json(filas[0]);
+      } catch (error) { const [codigoHttp, mensaje] = mensajeError(error); respuesta.status(codigoHttp).json({ error: mensaje }); }
     });
 
-    router.post(`/${ruta}`, async (req, res) => {
-      const b = req.body || {};
-      const err0 = validar(b, true);
-      if (err0) return res.status(400).json({ error: err0 });
+    router.post(`/${ruta}`, async (solicitud, respuesta) => {
+      const datos = solicitud.body || {};
+      const mensajeValidacion = validar(datos, true);
+      if (mensajeValidacion) return respuesta.status(400).json({ error: mensajeValidacion });
       try {
-        const lista = e.pkManual ? [e.pk, ...cols] : cols;
-        const vals = e.pkManual ? [b[e.pk], ...valores(b)] : valores(b);
-        const [r] = await pool.query(
-          `INSERT INTO ${e.tabla} (${lista.join(",")}) VALUES (${lista.map(() => "?").join(",")})`, vals);
-        const id = e.pkManual ? b[e.pk] : r.insertId;
-        const [rows] = await pool.query(`${sel} WHERE ${e.pk} = ?`, [id]);
-        res.status(201).json(rows[0]);
-      } catch (err) { const [s, m] = mensajeError(err); res.status(s).json({ error: m }); }
+        const columnasInsertar = entidad.llavePrimariaManual ? [entidad.llavePrimaria, ...columnasEditables] : columnasEditables;
+        const valoresInsertar = entidad.llavePrimariaManual ? [datos[entidad.llavePrimaria], ...valores(datos)] : valores(datos);
+        const [resultado] = await pool.query(
+          `INSERT INTO ${entidad.tabla} (${columnasInsertar.join(",")}) VALUES (${columnasInsertar.map(() => "?").join(",")})`, valoresInsertar);
+        const id = entidad.llavePrimariaManual ? datos[entidad.llavePrimaria] : resultado.insertId;
+        const [filas] = await pool.query(`${consultaSeleccion} WHERE ${entidad.llavePrimaria} = ?`, [id]);
+        respuesta.status(201).json(filas[0]);
+      } catch (error) { const [codigoHttp, mensaje] = mensajeError(error); respuesta.status(codigoHttp).json({ error: mensaje }); }
     });
 
-    router.put(`/${ruta}/:id`, async (req, res) => {
-      const b = req.body || {};
-      const err0 = validar(b, false);
-      if (err0) return res.status(400).json({ error: err0 });
+    router.put(`/${ruta}/:id`, async (solicitud, respuesta) => {
+      const datos = solicitud.body || {};
+      const mensajeValidacion = validar(datos, false);
+      if (mensajeValidacion) return respuesta.status(400).json({ error: mensajeValidacion });
       try {
-        const [r] = await pool.query(
-          `UPDATE ${e.tabla} SET ${cols.map((c) => `${c} = ?`).join(", ")} WHERE ${e.pk} = ?`,
-          [...valores(b), req.params.id]);
-        if (!r.affectedRows) return res.status(404).json({ error: "Registro no encontrado." });
-        const [rows] = await pool.query(`${sel} WHERE ${e.pk} = ?`, [req.params.id]);
-        res.json(rows[0]);
-      } catch (err) { const [s, m] = mensajeError(err); res.status(s).json({ error: m }); }
+        const [resultado] = await pool.query(
+          `UPDATE ${entidad.tabla} SET ${columnasEditables.map((columna) => `${columna} = ?`).join(", ")} WHERE ${entidad.llavePrimaria} = ?`,
+          [...valores(datos), solicitud.params.id]);
+        if (!resultado.affectedRows) return respuesta.status(404).json({ error: "Registro no encontrado." });
+        const [filas] = await pool.query(`${consultaSeleccion} WHERE ${entidad.llavePrimaria} = ?`, [solicitud.params.id]);
+        respuesta.json(filas[0]);
+      } catch (error) { const [codigoHttp, mensaje] = mensajeError(error); respuesta.status(codigoHttp).json({ error: mensaje }); }
     });
 
-    router.delete(`/${ruta}/:id`, async (req, res) => {
+    router.delete(`/${ruta}/:id`, async (solicitud, respuesta) => {
       try {
-        const [r] = await pool.query(`DELETE FROM ${e.tabla} WHERE ${e.pk} = ?`, [req.params.id]);
-        if (!r.affectedRows) return res.status(404).json({ error: "Registro no encontrado." });
-        res.json({ ok: true });
-      } catch (err) { const [s, m] = mensajeError(err); res.status(s).json({ error: m }); }
+        const [resultado] = await pool.query(`DELETE FROM ${entidad.tabla} WHERE ${entidad.llavePrimaria} = ?`, [solicitud.params.id]);
+        if (!resultado.affectedRows) return respuesta.status(404).json({ error: "Registro no encontrado." });
+        respuesta.json({ ok: true });
+      } catch (error) { const [codigoHttp, mensaje] = mensajeError(error); respuesta.status(codigoHttp).json({ error: mensaje }); }
     });
   }
   return router;

@@ -22,9 +22,9 @@ const pool = mysql.createPool({
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.get("/api/salud", async (_req, res) => {
-  try { await pool.query("SELECT 1"); res.json({ ok: true }); }
-  catch { res.status(503).json({ ok: false, error: "No hay conexión con MySQL." }); }
+app.get("/api/salud", async (_solicitud, respuesta) => {
+  try { await pool.query("SELECT 1"); respuesta.json({ ok: true }); }
+  catch { respuesta.status(503).json({ ok: false, error: "No hay conexión con MySQL." }); }
 });
 app.use("/api", crearRouter(pool, ENTIDADES));
 
