@@ -1,5 +1,9 @@
 # Fondos VIE 2027 · Prototipo funcional (SIGECI-VIE)
 
+> **In English:** working prototype of a university research funding workflow, built for a course at the Costa Rica Institute of Technology (TEC), 2026. I wrote the IEEE 830 requirements spec (18 use cases, 12 roles) and built the prototype with AI assistance (Claude Code): role based workflow from proposal submission to final approval, deadlines enforced by the system, independent evaluations, secret council voting, audit log, and a Node.js and Express REST API with five CRUD modules on MySQL. It was checked against more than 250 manual test cases.
+>
+> **Stack:** React 18, Vite, React Router, Node.js, Express, MySQL 8.
+
 Prototipo del sistema de gestión de la convocatoria de proyectos de investigación (ERS v1.3).
 El flujo completo del ERS (18 casos de uso, 17 pasos de formulario, evaluación, Consejo, VIE y CIE) funciona en el
 navegador y guarda sus datos en `localStorage`. Además, incluye un servidor Node + Express con **MySQL** y cinco CRUD
